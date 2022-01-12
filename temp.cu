@@ -32,16 +32,14 @@ void sum_array_cpu (int *a , int *b , int *c, int size)
     return false;
 }
 
-int main(int argc,char *argv[]) 
+int main()
 {
     //total size
     /*
     * size increse from  1024 - Y ( Y should detemined )
     */
-//    long size = 283400000;
-    long size  = atoi(argv[1]);
+    long size = 301748300;
     //IN PRVIOUS PART DETERMINED MAX BLOCK_SIZE = 1024
-    printf("testing for %ld number of threads ... \n",size);
     int block_size = 1024;
     bool isError= false; 
 
@@ -96,7 +94,7 @@ int main(int argc,char *argv[])
     //copmare
     isError = compare_arrays(gpu_result,h_c,size);
     if(isError){             
-        printf("Vector addition error for %ld of elements \n", size);
+        printf("Limit in %ld ", size);
         break;
 
     }
@@ -104,13 +102,13 @@ int main(int argc,char *argv[])
         printf("max size reached");
         break;
     }
-    //printf("%ld \n",size);
-    isError = true;
+   isError= true;
+    printf("%ld \t",size);
     size++;
     cudaFree(d_c);
     cudaFree(d_b);
     cudaFree(d_a);
     free(gpu_result);
     }
-   printf("Exection finshed ");
+   printf("Exection finshed");
 }
